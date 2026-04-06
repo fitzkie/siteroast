@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum SubscriptionStatus {
+  free
+  active
+  cancelled
+  past_due
+}
+
+enum PaymentType {
+  one_time
+  subscription
+}
+
+enum PaymentStatus {
+  succeeded
+  pending
+  failed
+  refunded
+}
+
+model User {
+  id                   String             @id @default(uuid())
+  email                String             @unique
+  passwordHash         String?            @map("password_hash")
+  name                 String?
+  stripeCustomerId     String?            @map("stripe_customer_id")
+  subscriptionStatus   SubscriptionStatus @default(free) @map("subscription_status")
+  subscriptionStripeId String?            @map("subscription_stripe_id")
+  createdAt            DateTime           @default(now()) @map("created_at")
+  updatedAt            DateTime           @updatedAt @map("updated_at")
+  reports              Report[]
+  payments             Payment[]
+
+  @@map("users")
+}
+
+model Report {
+  id              String   @id @default(uuid())
+  userId          String?  @map("user_id")
+  url             String
+  overallScore    Int      @map("overall_score")
+  overallGrade    String   @map("overall_grade")
+  categoryScores  Json     @map("category_scores")
+  lighthouseData  Json?    @map("lighthouse_data")
+  screenshotUrl   String?  @map("screenshot_url")
+  shareSlug       String   @unique @map("share_slug")
+  isPreview       Boolean  @default(true) @map("is_preview")
+  paymentId       String?  @map("payment_id")
+  createdAt       DateTime @default(now()) @map("created_at")
+  user            User?    @relation(fields: [userId], references: [id])
+  payment         Payment? @relation(fields: [paymentId], references: [id])
+
+  @@map("reports")
+}
+
+model Payment {
+  id              String        @id @default(uuid())
+  userId          String        @map("user_id")
+  stripePaymentId String        @map("stripe_payment_id")
+  type            PaymentType
+  amountCents     Int           @map("amount_cents")
+  status          PaymentStatus @default(pending)
+  createdAt       DateTime      @default(now()) @map("created_at")
+  user            User          @relation(fields: [userId], references: [id])
+  reports         Report[]
+
+  @@map("payments")
+}
