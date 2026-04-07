@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { renderToBuffer } from "@react-pdf/renderer";
+import { renderToBuffer, Document } from "@react-pdf/renderer";
 import { ReportPdf } from "@/lib/pdf-generator";
 import React from "react";
 
@@ -26,10 +26,10 @@ export async function GET(request: NextRequest, ctx: { params: Promise<{ id: str
       overallGrade: report.overallGrade,
       report: categoryScores as any,
       shareUrl,
-    })
+    }) as React.ReactElement<React.ComponentProps<typeof Document>>
   );
 
-  return new NextResponse(pdfBuffer, {
+  return new NextResponse(new Uint8Array(pdfBuffer), {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition": `attachment; filename="siteroast-${report.shareSlug}.pdf"`,

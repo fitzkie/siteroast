@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { validateUrl } from "@/lib/utils";
 import { generateReport } from "@/lib/report-pipeline";
 
@@ -30,8 +31,8 @@ export async function POST(request: NextRequest) {
         url,
         overallScore: result.overallScore,
         overallGrade: result.overallGrade,
-        categoryScores: result.roast as unknown as Record<string, unknown>,
-        lighthouseData: result.lighthouseScores as unknown as Record<string, unknown>,
+        categoryScores: result.roast as unknown as Prisma.InputJsonValue,
+        lighthouseData: result.lighthouseScores as unknown as Prisma.InputJsonValue,
         screenshotUrl: `data:image/png;base64,${screenshotBase64}`,
         shareSlug: result.shareSlug,
         isPreview: !isSubscriber,
