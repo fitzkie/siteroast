@@ -34,17 +34,23 @@ export default async function ReportPage({ params }: PageProps) {
   const categoryScores = report.categoryScores as Record<string, unknown>;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-[#090909] text-[#f5f1e8]">
       <Nav />
       {report.isPreview ? (
         <ReportPreview id={report.id} url={report.url} overallScore={report.overallScore} overallGrade={report.overallGrade}
           overallRoast={(categoryScores as any).overallRoast}
           topFindings={[(categoryScores as any).categories?.firstImpressions?.findings?.[0], (categoryScores as any).categories?.seoHealth?.findings?.[1], (categoryScores as any).categories?.technicalPerformance?.findings?.[2]].filter(Boolean)} />
       ) : (
-        <ReportView url={report.url} report={categoryScores as any} screenshotUrl={report.screenshotUrl || undefined} slug={report.shareSlug} />
+        <ReportView
+          url={report.url}
+          report={categoryScores as any}
+          screenshotUrl={report.screenshotUrl || undefined}
+          slug={report.shareSlug}
+          appUrl={process.env.NEXT_PUBLIC_APP_URL || ""}
+        />
       )}
-      <div className="bg-orange-500/10 border-t border-orange-500/30 py-6 text-center">
-        <p className="text-lg text-orange-300">Want to know how your site stacks up? <a href="/" className="font-semibold underline hover:text-white">Get your own roast</a></p>
+      <div className="border-t border-[#4c3b13] bg-[rgba(228,182,59,0.08)] py-6 text-center">
+        <p className="text-lg text-[#f3deb1]">Want to know how your site stacks up? <a href="/" className="font-semibold underline hover:text-[#fff4d4]">Get your own roast</a></p>
       </div>
       <Footer />
     </div>

@@ -16,18 +16,18 @@ export function ReportPreview({ id, url, overallScore, overallGrade, overallRoas
   }
   return (
     <div className="mx-auto max-w-2xl px-6 py-12">
-      <div className="rounded-2xl border border-gray-800 bg-gray-900 p-8 text-center">
-        <h2 className="text-2xl font-bold text-white mb-2">Preview for <span className="text-orange-500">{url}</span></h2>
+      <div className="rounded-[32px] border border-[#2b2619] bg-[#141414] p-8 text-center shadow-[0_24px_60px_rgba(0,0,0,0.22)]">
+        <h2 className="mb-2 text-2xl font-bold text-[#f5f1e8]">Preview for <span className="text-[#e4b63b]">{url}</span></h2>
         <div className="flex justify-center my-6"><ScoreBadge score={overallScore} grade={overallGrade} /></div>
-        <p className="text-xl text-gray-300 italic mb-6">&ldquo;{overallRoast}&rdquo;</p>
+        <p className="mb-6 text-xl italic text-[#d4cfc1]">&ldquo;{overallRoast}&rdquo;</p>
         <div className="space-y-2 text-left mb-8">
-          {topFindings.map((finding, i) => (<div key={i} className="rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-gray-300">{finding.text}</div>))}
+          {topFindings.map((finding, i) => (<div key={i} className="rounded-2xl border border-[#322d21] bg-[#1a1a1a] px-4 py-3 text-[#d4cfc1]">{finding.text}</div>))}
         </div>
         <div className="relative mb-8">
-          <div className="blur-sm opacity-30 space-y-2"><div className="h-24 rounded-lg bg-gray-800" /><div className="h-24 rounded-lg bg-gray-800" /></div>
-          <div className="absolute inset-0 flex items-center justify-center"><p className="text-lg font-semibold">6 detailed categories + PDF awaiting...</p></div>
+          <div className="space-y-2 opacity-30 blur-sm"><div className="h-24 rounded-2xl bg-[#1d1d1d]" /><div className="h-24 rounded-2xl bg-[#1d1d1d]" /></div>
+          <div className="absolute inset-0 flex items-center justify-center"><p className="text-lg font-semibold text-[#f5f1e8]">6 detailed categories + PDF awaiting...</p></div>
         </div>
-        <button onClick={handleUnlock} className="rounded-xl bg-orange-500 px-8 py-4 text-lg font-semibold text-white hover:bg-orange-600 transition">Unlock Full Report &mdash; $29</button>
+        <button onClick={handleUnlock} className="rounded-2xl bg-[#e4b63b] px-8 py-4 text-lg font-semibold text-[#111111] shadow-[0_14px_30px_rgba(228,182,59,0.18)] hover:bg-[#f5c74d]">Unlock Full Report &mdash; $29</button>
       </div>
     </div>
   );

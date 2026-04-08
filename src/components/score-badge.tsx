@@ -1,14 +1,13 @@
 interface ScoreBadgeProps { score: number; grade: string; size?: "sm" | "lg"; }
 
 export function ScoreBadge({ score, grade, size = "lg" }: ScoreBadgeProps) {
-  const colorClass = score >= 90 ? "text-green-400 border-green-400" : score >= 70 ? "text-yellow-400 border-yellow-400" : score >= 50 ? "text-orange-400 border-orange-400" : "text-red-400 border-red-400";
   const dimensions = size === "lg" ? "h-32 w-32" : "h-20 w-20";
   const scoreSize = size === "lg" ? "text-4xl" : "text-2xl";
   const gradeSize = size === "lg" ? "text-lg" : "text-sm";
   return (
-    <div className={`${dimensions} rounded-full border-4 ${colorClass} flex flex-col items-center justify-center`}>
-      <span className={`${scoreSize} font-bold`}>{score}</span>
-      <span className={`${gradeSize} font-medium opacity-75`}>{grade}</span>
+    <div className={`${dimensions} flex flex-col items-center justify-center rounded-full border-4 border-[#cfa638] bg-[radial-gradient(circle_at_top,rgba(228,182,59,0.22),rgba(18,18,18,0.98)_72%)] text-[#f5c74d] shadow-[0_0_0_1px_rgba(228,182,59,0.08),0_18px_40px_rgba(0,0,0,0.28)]`}>
+      <span className={`${scoreSize} font-bold leading-none`}>{score}</span>
+      <span className={`${gradeSize} mt-1 font-semibold text-[#f4e5bb]/80`}>{grade}</span>
     </div>
   );
 }

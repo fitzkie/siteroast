@@ -1,0 +1,14 @@
+.git
+.gitignore
+.next
+node_modules
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+coverage
+npm-debug.log*
+README.md
+setup.sh
+__tests__

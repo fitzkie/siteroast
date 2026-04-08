@@ -8,12 +8,12 @@ const severityLabels = { critical: "Critical", warning: "Warning", "nice-to-have
 
 export function ReportCard({ title, score, grade, roast, findings, fixFirst }: ReportCardProps) {
   return (
-    <div className="rounded-2xl border border-gray-800 bg-gray-900 p-6">
+    <div className="rounded-[28px] border border-[#2b2619] bg-[#141414] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.16)]">
       <div className="flex items-start justify-between mb-4">
-        <h3 className="text-xl font-semibold text-white">{title}</h3>
+        <h3 className="text-xl font-semibold text-[#f5f1e8]">{title}</h3>
         <ScoreBadge score={score} grade={grade} size="sm" />
       </div>
-      <p className="text-gray-300 italic mb-6">&ldquo;{roast}&rdquo;</p>
+      <p className="mb-6 italic text-[#d4cfc1]">&ldquo;{roast}&rdquo;</p>
       <div className="space-y-3 mb-6">
         {findings.map((finding, i) => (
           <div key={i} className={`rounded-lg border px-4 py-3 ${severityColors[finding.severity]}`}>
@@ -22,9 +22,9 @@ export function ReportCard({ title, score, grade, roast, findings, fixFirst }: R
           </div>
         ))}
       </div>
-      <div className="rounded-lg bg-orange-500/10 border border-orange-500/30 px-4 py-3">
-        <span className="text-xs font-medium uppercase text-orange-400">Fix This First</span>
-        <p className="mt-1 text-orange-300">{fixFirst}</p>
+      <div className="rounded-2xl border border-[#5f4b19] bg-[rgba(228,182,59,0.08)] px-4 py-3">
+        <span className="text-xs font-medium uppercase tracking-[0.16em] text-[#f5c74d]">Fix This First</span>
+        <p className="mt-1 text-[#f3deb1]">{fixFirst}</p>
       </div>
     </div>
   );

@@ -36,20 +36,23 @@ function LoginContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-[#090909] text-[#f5f1e8]">
       <Nav />
       <div className="mx-auto max-w-md px-6 pt-24">
-        <h1 className="text-3xl font-bold text-center mb-8">Sign In</h1>
+        <div className="rounded-[32px] border border-[#2b2619] bg-[#141414] p-8 shadow-[0_24px_60px_rgba(0,0,0,0.2)]">
+        <h1 className="mb-2 text-center text-3xl font-bold">Sign In</h1>
+        <p className="mb-8 text-center text-sm text-[#9f9888]">Access your report history and unlock full audits.</p>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div><label className="block text-sm text-gray-400 mb-1">Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white focus:border-orange-500 focus:outline-none" required /></div>
-          <div><label className="block text-sm text-gray-400 mb-1">Password</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-lg border border-gray-700 bg-gray-800 px-4 py-3 text-white focus:border-orange-500 focus:outline-none" required /></div>
+          <div><label className="mb-1 block text-sm text-[#9f9888]">Email</label>
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full rounded-2xl border border-[#3a311d] bg-[#1a1a1a] px-4 py-3 text-[#f5f1e8] focus:border-[#e4b63b] focus:outline-none focus:ring-4 focus:ring-[rgba(228,182,59,0.12)]" required /></div>
+          <div><label className="mb-1 block text-sm text-[#9f9888]">Password</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full rounded-2xl border border-[#3a311d] bg-[#1a1a1a] px-4 py-3 text-[#f5f1e8] focus:border-[#e4b63b] focus:outline-none focus:ring-4 focus:ring-[rgba(228,182,59,0.12)]" required /></div>
           {error && <p className="text-red-400 text-sm">{error}</p>}
-          <button type="submit" disabled={isLoading} className="w-full rounded-lg bg-orange-500 py-3 font-semibold text-white hover:bg-orange-600 disabled:opacity-50 transition">
+          <button type="submit" disabled={isLoading} className="w-full rounded-2xl bg-[#e4b63b] py-3 font-semibold text-[#111111] hover:bg-[#f5c74d] disabled:opacity-50">
             {isLoading ? "Signing in..." : "Sign In"}</button>
         </form>
-        <p className="mt-6 text-center text-gray-400">Don&apos;t have an account? <Link href={`/signup${reportId ? `?reportId=${reportId}` : ""}`} className="text-orange-500 hover:underline">Sign up</Link></p>
+        <p className="mt-6 text-center text-[#9f9888]">Don&apos;t have an account? <Link href={`/signup${reportId ? `?reportId=${reportId}` : ""}`} className="text-[#f5c74d] hover:underline">Sign up</Link></p>
+        </div>
       </div>
     </div>
   );
